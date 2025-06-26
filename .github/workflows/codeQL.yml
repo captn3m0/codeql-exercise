@@ -5,7 +5,12 @@ on:
     branches: [main]
 
 jobs:
+  
   CodeQL-Build:
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript-typescript', 'python']
     runs-on: ubuntu-latest
 
     permissions:
@@ -23,5 +28,3 @@ jobs:
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
-        with:
-          languages: javascript
